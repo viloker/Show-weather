@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link href="{% static 'main/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>How weather in your city?</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="city">Enter your city:</label>
+            <input id="city" name="city" type="text" placeholder="For example: London">
+            <input type="submit" value="Search">
+        </form>
+        {% if errors %}
+            <p class="errors">{{ errors }}</p>
+        {% else %}
+            <div class="weather-results">
+                <p>Temperature: {{ weather.temp }}°C</p>
+                <p>Feels like: {{ weather.feels_like }}°C</p>
+                <p>Wind speed: {{ weather.speed_wind }} m/s</p>
+                <p>Country: {{ weather.country }}</p>
+                <p>Sea level: {{ weather.sea_level }} m</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

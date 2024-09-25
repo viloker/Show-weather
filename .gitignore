@@ -1,0 +1,9 @@
+db.sqlite3
+
+*.pyc
+
+logs/
+*.log
+
+main/api_keys.py
+
